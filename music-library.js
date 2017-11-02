@@ -20,55 +20,21 @@ var library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
-}
-
-// FUNCTIONS TO IMPLEMENT:
-
-// prints a list of all playlists, in the form:
-// p01: Coding Music - 2 tracks
-// p02: Other Playlist - 1 tracks
+             },
 
 
-
-
-var printPlaylists = function () {
-
-
-
-  for (var playListName in library.playlists){
-    // var clonedPlaylist = ""
-    // for (i = 0; i < library.playlist.length; i++){
-
-  console.log(playListName + ": " + library.playlists[playListName].name + " - " + library.playlists[playListName].tracks.length + " tracks");
-
+printPlaylists: function(){
+  for (var playListName in this.playlists){
+  console.log(playListName + ": " + this.playlists[playListName].name + " - " + this.playlists[playListName].tracks.length + " tracks");
   }
-}
-
-
-return printPlaylists();
-
-// prints a list of all tracks, in the form:
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
-// t03: Four Thirty-Three by John Cage (Woodstock 1952)
-
-var printTracks = function () {
-
-for (var trackList in library.tracks){
+},
+printTracks: function () {
+  for (var trackList in library.tracks){
   console.log(trackList + ": " + library.tracks[trackList].name + " by " + library.tracks[trackList].artist + " (" + library.tracks[trackList].album + " )");
 }
-}
+},
 
-
-return printTracks();
-
-// prints a list of tracks for a given playlist, in the form:
-// p01: Coding Music - 2 tracks
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
-
-var printPlaylist = function (playlistId) {
+printPlaylist : function (playlistId) {
   if (playlistId === 'p01') {
     console.log(playlistId + ": " + library.playlists[playlistId].name + ' - ' + library.playlists[playlistId].tracks.length + " tracks");
     for (var trackList in library.playlists.p01.tracks){
@@ -83,9 +49,77 @@ var printPlaylist = function (playlistId) {
       console.log(library.playlists.p02.tracks[trackList] + ": " + library.tracks[tracker].name + " by " + library.tracks[tracker].artist + " (" + library.tracks[tracker].album + ")");
     }
   }
+},
+
+addTrackToPlaylist : function (trackId, playlistId) {
+  library.playlists[playlistId]['tracks'].push(trackId);
+  console.log(library.playlists[playlistId]);
+
+},
+
+uid : function() {
+  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+},
+
+addTrack : function (name, artist, album) {
+
+id = this.uid();
+library.tracks.t04 = {
+  id,
+  name,
+  artist,
+  album};
+  console.log(library.tracks)
+},
+
+addPlaylist : function (name) {
+
+
+
+id = this.uid();
+tracks = "Done PIGGGY!";
+library.playlists.p03 = {
+  id,
+  name,
+  tracks};
+  console.log(library.playlists);
+},
+
 }
 
-printPlaylist('p02');
+library.printPlaylists();
+library.printTracks();
+library.printPlaylist('p02');
+library.addTrackToPlaylist('t01', 'p02');
+library.addTrack("Jam", "Ham Storm" , "Belly Button Hunky");
+library.addPlaylist("Hammy");
+
+
+// FUNCTIONS TO IMPLEMENT:
+
+// prints a list of all playlists, in the form:
+// p01: Coding Music - 2 tracks
+// p02: Other Playlist - 1 tracks
+
+
+
+
+// prints a list of all tracks, in the form:
+// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// t02: Model View Controller by James Dempsey (WWDC 2003)
+// t03: Four Thirty-Three by John Cage (Woodstock 1952)
+
+
+
+
+// prints a list of tracks for a given playlist, in the form:
+// p01: Coding Music - 2 tracks
+// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// t02: Model View Controller by James Dempsey (WWDC 2003)
+
+
+
+
 
 
 // return printPlaylist;
@@ -93,54 +127,24 @@ printPlaylist('p02');
 
 // adds an existing track to an existing playlist
 
-var addTrackToPlaylist = function (trackId, playlistId) {
-library.playlists[playlistId]['tracks'].push(trackId);
-console.log(library.playlists[playlistId]);
 
-
-}
-addTrackToPlaylist('t01', 'p02');
 
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
 
-var uid = function() {
-  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-}
+
 
 
 // adds a track to the library
 
-var addTrack = function (name, artist, album) {
 
-id = uid();
-library.tracks.t04 = {
-  id,
-  name,
-  artist,
-  album};
-  console.log(library.tracks)
-}
-addTrack("Jam", "Ham Storm" , "Belly Button Hunky");
 
 
 // adds a playlist to the library
 
-var addPlaylist = function (name) {
 
 
-
-id = uid();
-tracks = "Done PIGGGY!";
-library.playlists.p03 = {
-  id,
-  name,
-  tracks};
-  console.log(library.playlists);
-}
-
-addPlaylist("Hammy");
 
 
 // STRETCH:
